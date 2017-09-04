@@ -1,0 +1,31 @@
+{
+  "name": "FUTURE",
+  "version": "1.0.0",
+  "description": "Trading pixels like they're cowrie shells",
+  "scripts": {
+    "start": "echo \"Error: You must specify dev or prod, ex: npm run start:dev\"",
+    "start-dev": "NODE_ENV=development gulp dev",
+    "prebuild": "rm -rf build/*",
+    "build": "npm run build-js && npm run build-sass && npm run build-server",
+    "build-js": "NODE_ENV=production webpack --config webpack.config.production.js && gulp uglify-js-prod",
+    "build-sass": "gulp style",
+    "build-server": "babel -d ./build/server ./src/server && babel -d ./build/shared ./src/shared"
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": "https://github.com/Anemy/FUTURE",
+  "dependencies": {
+    "gulp-uglifyjs": "^0.6.2",
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^4.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^3.1.0",
+    "webpack": "^3.5.5",
+    "webpack-stream": "^4.0.0"
+  }
+}

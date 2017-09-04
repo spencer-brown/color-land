@@ -1,0 +1,12 @@
+node_modules
+.env
+
+# Mac OS
+.DS_Store
+
+local
+
+# Built files
+build/**/*.*
+public/js/built.js
+public/style/built.css
