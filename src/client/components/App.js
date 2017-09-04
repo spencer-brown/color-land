@@ -1,5 +1,5 @@
 import React from 'react';
-// import ReactCSSTransitionGroup from 'react-transition-group';
+import Game from '../game';
 
 // @prop state
 // @ref gameFrame - Used to communicate messages to the game frame from other parts of the page (ex. NavBar).
@@ -11,10 +11,19 @@ class App extends React.Component {
   render() {    
     return (
       <div>
-        <p>Yo</p>
+        <p>Yo</p> 
+        <Game/>
       </div>
     );
   }
 }
+
+class unused extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+}
+
+new unused();
 
 export default App;
