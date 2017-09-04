@@ -9,9 +9,6 @@ Install node js from https://nodejs.org/en/download/
 
 ```bash
 $ npm install
-$ npm install -g gulp
-$ npm install -g eslint
-$ npm install -g nodemon
 ```
 
 ## Deployment
@@ -19,5 +16,12 @@ $ npm install -g nodemon
 #### Development
 
 ```bash
-$ 
+$ npm run start-dev
+$ open ./public/html/index.html
+```
+
+#### Production
+
+```bash
+$ npm run start-prod
 ```

@@ -3,16 +3,16 @@ const webpack = require('webpack-stream');
 
 const concat = require('gulp-concat');
 const eslint = require('gulp-eslint');
-const nodemon = require('gulp-nodemon');
-const livereload = require('gulp-livereload');
+// const livereload = require('gulp-livereload');
+// const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglifyjs');
 
 const config = {
   clientJsEntry: [
-    'src/client/js/index.js'
+    'src/client/index.js'
   ],
-  clientJsPath: 'src/client/js/**/*.js',
+  clientJsPath: 'src/client/**/*.js',
   clientJsBuildDir: 'build/client',
   clientJsDestDir: 'public/js',
   cssDestDir: 'public/style',
@@ -24,15 +24,12 @@ const config = {
     'gulpfile.js',
   ],
   publicFilesToLiveReload: [
-    'public/**',
-    '!public/js/build.js',
-    '!public/style/index.css'
+    '!public/**/*.*',
+    // '!public/js/index.js',
+    // '!public/style/index.css'
   ],
-  sassPath: 'src/client/sass/**/*.scss',
-  sassEntryPath: 'src/client/sass/index.scss',
-  serverJsEntry: 'src/server/index.js',
-  serverJsPath: 'src/server/**/*.js',
-  sharedJsPath: 'src/shared/**/*.js'
+  sassPath: 'sass/**/*.scss',
+  sassEntryPath: 'sass/index.scss'
 };
 
 const clientWebpackConfig = {
@@ -50,9 +47,9 @@ const clientWebpackConfig = {
   }
 };
 
-gulp.task('dev', ['server-dev', 'js-client-dev', 'style', 'lint'], () => {
+gulp.task('dev', ['js-client-dev', 'style', 'lint'], () => {
   // Watch for clientside changes and run building tasks.
-  gulp.watch([config.clientJsPath, config.sharedJsPath], ['js-client-dev']);
+  gulp.watch(config.clientJsPath, ['js-client-dev']);
 
   gulp.watch(config.jsToLintPath, ['lint']);
 
@@ -60,9 +57,9 @@ gulp.task('dev', ['server-dev', 'js-client-dev', 'style', 'lint'], () => {
   gulp.watch(config.sassPath, ['style']);
 
   // Watch for any changes on public files and live reload.
-  gulp.watch(config.publicFilesToLiveReload, (file) => {
-    livereload.changed(file.path);
-  });
+  // gulp.watch(config.publicFilesToLiveReload, (file) => {
+  //   livereload.changed(file.path);
+  // });
 });
 
 gulp.task('style', () => {
@@ -90,31 +87,14 @@ gulp.task('js-client-dev', () => {
     .on('error', function handleError() {
       this.emit('end'); // Recover from errors.
     })
-    .pipe(concat('build.js'))
+    .pipe(concat('index.js'))
     .pipe(gulp.dest(config.clientJsDestDir));
 });
-
 
 gulp.task('uglify-js-prod', () => {
-  gulp.src(config.clientJsBuildDir + '/build.js')
+  gulp.src(config.clientJsBuildDir + '/index.js')
     .pipe(uglify())
     .pipe(gulp.dest(config.clientJsDestDir));
-});
-
-gulp.task('server-dev', () => {
-  // Watch for changes in server code and restart the server.
-  nodemon({
-    script: config.serverJsEntry,
-    ext: 'js',
-    // Use babel for compiling ES6 server code.
-    exec: 'babel-node',
-    args: ['--presets', 'es2015,stage-2'],
-    watch: [config.serverJsPath, config.sharedJsPath]
-  }).on('restart', () => {
-    setTimeout(() => {
-      livereload.reload();
-    }, 2000 /* 2s - Let the last instance shutdown */ );
-  });
 });
 
 gulp.task('default', () => {
