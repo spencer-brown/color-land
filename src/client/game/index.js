@@ -5,11 +5,21 @@ class Game extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    const canvas = document.getElementById('js-game-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // ctx.clearRect(200, 200);
+
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(20, 20, 20, 20);
+  }
+
   render() {    
     return (
       <div>
         <p>Game render</p>
-        <canvas></canvas>
+        <canvas id="js-game-canvas"></canvas>
       </div>
     );
   }

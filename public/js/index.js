@@ -22577,6 +22577,17 @@ var Game = function (_React$Component) {
   }
 
   _createClass(Game, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var canvas = document.getElementById('js-game-canvas');
+      var ctx = canvas.getContext('2d');
+
+      // ctx.clearRect(200, 200);
+
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(20, 20, 20, 20);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -22587,7 +22598,7 @@ var Game = function (_React$Component) {
           null,
           'Game render'
         ),
-        _react2.default.createElement('canvas', null)
+        _react2.default.createElement('canvas', { id: 'js-game-canvas' })
       );
     }
   }]);
