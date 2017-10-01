@@ -15,10 +15,12 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": "https://github.com/Anemy/FUTURE",
   "dependencies": {
+    "express": "^4.16.1",
     "gulp": "^3.9.1",
     "gulp-uglifyjs": "^0.6.2",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

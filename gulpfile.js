@@ -1,12 +1,10 @@
 const gulp = require('gulp');
 const webpack = require('webpack-stream');
-
 const concat = require('gulp-concat');
 const eslint = require('gulp-eslint');
-// const livereload = require('gulp-livereload');
-// const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglifyjs');
+const nodemon = require('gulp-nodemon');
 
 const config = {
   clientJsEntry: [
@@ -54,6 +52,14 @@ gulp.task('dev', ['js-client-dev', 'style', 'lint'], () => {
 
   // Watch for styling changes and build the new hot style.
   gulp.watch(config.sassPath, ['style']);
+
+  nodemon({
+    script: 'src/server/index.js',
+    ext: 'js',
+    env: {
+      NODE_ENV: 'development'
+    }
+  });
 
   // Watch for any changes on public files and live reload.
   // gulp.watch(config.publicFilesToLiveReload, (file) => {
