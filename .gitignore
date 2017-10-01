@@ -6,6 +6,5 @@ node_modules
 
 local
 
-# Built files
 build/**/*.*
 public/style/built.css
