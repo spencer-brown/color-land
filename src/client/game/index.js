@@ -16,7 +16,7 @@ class Game extends React.Component {
       for(var j=0; j<5; j++) {
         var t = board.getTile(i,j);
         ctx.fillStyle = t.getColor();
-        console.log(t.getColor())
+      
         ctx.fillRect(t.getX()*tileSize, t.getY()*tileSize, tileSize, tileSize);
       }
     } 
