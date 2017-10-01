@@ -7,4 +7,5 @@ node_modules
 local
 
 build/**/*.*
+public/js/index.js
 public/style/built.css
