@@ -92,7 +92,7 @@ gulp.task('js-client-dev', () => {
     .on('error', function handleError() {
       this.emit('end'); // Recover from errors.
     })
-    .pipe(concat('built.js'))
+    .pipe(concat('index.js'))
     .pipe(gulp.dest(config.clientJsDestDir));
 });
 
