@@ -17,7 +17,7 @@ class Game extends React.Component {
         var t = board.getTile(i,j);
         ctx.fillStyle = 'white';
         ctx.fillRect(t.getX()*tileSize, t.getY()*tileSize, tileSize, tileSize);
-        ctx.strokeStyle = "rgba(0, 0, 0, .05)"
+        ctx.strokeStyle = 'rgba(0, 0, 0, .05)';
         ctx.strokeRect(t.getX()*tileSize, t.getY()*tileSize, tileSize, tileSize);
       }
     } 

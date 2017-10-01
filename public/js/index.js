@@ -9875,7 +9875,7 @@ var Game = function (_React$Component) {
           var t = board.getTile(i, j);
           ctx.fillStyle = 'white';
           ctx.fillRect(t.getX() * tileSize, t.getY() * tileSize, tileSize, tileSize);
-          ctx.strokeStyle = "rgba(0, 0, 0, .05)";
+          ctx.strokeStyle = 'rgba(0, 0, 0, .05)';
           ctx.strokeRect(t.getX() * tileSize, t.getY() * tileSize, tileSize, tileSize);
         }
       }
@@ -9943,6 +9943,11 @@ var Board = function () {
     value: function getTile(x, y) {
       return this._grid[x][y];
     }
+  }, {
+    key: 'setTileColor',
+    value: function setTileColor(x, y, newColor) {
+      this._grid[x][y].setColor(newColor);
+    }
   }]);
 
   return Board;
@@ -9988,6 +9993,11 @@ var Tile = function () {
     key: "getColor",
     value: function getColor() {
       return this._color;
+    }
+  }, {
+    key: "setColor",
+    value: function setColor(newColor) {
+      this._color = newColor;
     }
   }]);
 

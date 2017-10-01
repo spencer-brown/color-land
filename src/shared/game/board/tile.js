@@ -17,6 +17,10 @@ class Tile{
   getColor(){
     return this._color;
   }
+
+  setColor(newColor){
+    this._color = newColor;
+  }
   
 }
 
