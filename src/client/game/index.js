@@ -1,4 +1,5 @@
 import React from 'react';
+import Board from '../../shared/game/board';
 
 class Game extends React.Component {
   constructor(props) {
