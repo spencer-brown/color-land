@@ -8,5 +8,3 @@ import App from './components/App.js';
 
 // Render the app.
 render(<App/>, document.getElementById('react-container'));
-
-console.log('Testing react');

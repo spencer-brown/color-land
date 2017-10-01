@@ -1,10 +1,23 @@
 /* global io */
 
-export function connect() {
+import user from './user';
+
+
+const socket = io.connect('localhost:3000');
+
+function connect() {
   return new Promise((resolve) => {
-    const socket = io.connect('localhost:3000');
     socket.on('connect', () => {
       resolve();
     });
+  });
+}
+
+export function connectToServer() {
+  return new Promise(async (resolve) => {
+    // Establish a connection with the server.
+    await connect();
+
+    socket.emit('registerUser', user.id, resolve);
   });
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Game from '../game';
-import { connect } from '../utils/io';
+import { connectToServer } from '../utils/io';
 
 
 // @prop state
@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    await connect();
+    await connectToServer();
     this.setState({ connected: true });
   }
 

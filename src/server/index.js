@@ -8,11 +8,17 @@ const PORT = 3000;
 
 app.use('/', express.static('public'));
 
-io.on('connection', (client) => {
+io.on('connection', (socket) => {
   console.log('Client connected!');
 
-  client.on('disconnect', () => {
+  socket.on('disconnect', () => {
     console.log('Lost \'em.');
+  });
+
+  socket.on('registerUser', (userId, cb) => {
+    console.log('TODO: Register user.');
+
+    cb();
   });
 });
 
