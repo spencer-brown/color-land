@@ -1,10 +1,12 @@
 import React from 'react';
-import Game from '../game';
+
 import { connectToServer } from '../utils/io';
+import Game from '../game/Game';
+import HomeMenu from './menu/HomeMenu';
+import { MenuConstants } from '../ClientConstants';
 
 
-// @prop state
-// @ref gameFrame - Used to communicate messages to the game frame from other parts of the page (ex. NavBar).
+// @state menuView
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -15,20 +17,45 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    window.game = new Game();
+    window.game.loadCanvas();
+
     await connectToServer();
-    this.setState({ connected: true });
+    this.setState({
+      connected: true,
+      menuView: MenuConstants.HOME
+    });
   }
 
-  render() {    
+  changeMenuView(newMenuView) {
+    this.setState({
+      menuView: newMenuView
+    });
+  }
+
+  render() {  
+    let menuToShow = '';
+    switch(this.state.menuView) {
+      case MenuConstants.HOME:
+        menuToShow = (<HomeMenu changeMenuView={this.changeMenuView.bind(this)}/>);
+        break;
+      case MenuConstants.IN_GAME:
+        // Blank.
+        menuToShow = '';
+        break;
+    }
+
     return (
       <div>
         {this.state.connected ?
-          <Game/>
+          { menuToShow }
           :
           <div>
             <h1>Loading...</h1>
           </div>
         }
+        
+        <canvas id="js-game-canvas"></canvas>
       </div>
     );
   }

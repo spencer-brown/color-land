@@ -8,5 +8,4 @@ local
 
 # Built files
 build/**/*.*
-public/js/built.js
 public/style/built.css
