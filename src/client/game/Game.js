@@ -1,16 +1,19 @@
-import React from 'react';
 import Board from '../../shared/game/board/board.js';
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+class Game {
+  constructor() {}
 
-  componentDidMount() {
+  loadCanvas() {
     const canvas = document.getElementById('js-game-canvas');
     const ctx = canvas.getContext('2d');
-    const tileSize = 50;
+
     // ctx.clearRect(200, 200);
+
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(20, 20, 20, 20);
+
+    let tileSize = 20;
+
     let board = new Board(5,5);
     for(var i=0; i<5; i++) {
       for(var j=0; j<5; j++) {
@@ -21,19 +24,6 @@ class Game extends React.Component {
         ctx.strokeRect(t.getX()*tileSize, t.getY()*tileSize, tileSize, tileSize);
       }
     } 
-   
-
-
-
-  }
-
-  render() {    
-    return (
-      <div>
-        <p>Game render</p>
-        <canvas id="js-game-canvas"></canvas>
-      </div>
-    );
   }
 }
 

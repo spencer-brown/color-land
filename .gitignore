@@ -6,7 +6,6 @@ node_modules
 
 local
 
-# Built files
 build/**/*.*
-public/js/built.js
+public/js/index.js
 public/style/built.css
