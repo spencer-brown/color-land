@@ -17,8 +17,8 @@
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-uglifyjs": "^0.6.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
