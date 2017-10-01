@@ -7,7 +7,8 @@ const socket = io.connect('localhost:3000');
 
 function connect() {
   return new Promise((resolve) => {
-    socket.on('connect', () => {
+    socket.on('connect', (id) => {
+      user.id = id;
       resolve();
     });
   });
@@ -18,6 +19,6 @@ export function connectToServer() {
     // Establish a connection with the server.
     await connect();
 
-    socket.emit('registerUser', user.id, resolve);
+    socket.emit('registerUser', resolve);
   });
 }
