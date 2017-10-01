@@ -1,5 +1,5 @@
-export default class {
-  static validName(name) {
-    return !!name;
+module.exports = class {
+  static validUsername(username) {
+    return !!username;
   }
-}
+};

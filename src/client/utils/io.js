@@ -19,6 +19,12 @@ export function connectToServer() {
     // Establish a connection with the server.
     await connect();
 
-    socket.emit('registerUser', resolve);
+    socket.emit('registerUser', 'testusername', resolve);
+  });
+}
+
+export function connectToGame(username) {
+  return new Promise(async (connected) => {
+    socket.emit('registerUser', username, connected);
   });
 }

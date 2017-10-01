@@ -3,13 +3,12 @@ const uuidv4 = require('uuid/v4');
 const User = require('../shared/models/User');
 
 class UserManager {
-  contructor() {
-    this.users = [];
-  }
-
   addUser() {
-    const id = uuidv4();
+    if (!this.users) {
+      this.users = [];
+    }
 
+    const id = uuidv4();
     this.users[id] = new User(id);
     return this.users[id];
   }

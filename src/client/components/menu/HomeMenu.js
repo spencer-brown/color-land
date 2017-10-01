@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { connectToGame } from '../../utils/io';
+import { MenuConstants } from '../../ClientConstants';
 
 // @prop changeMenuView
 // @state connectingToGame
@@ -12,14 +14,15 @@ class HomeMenu extends React.Component {
     };
   }
 
-  playNowClicked() {
-    console.log('Play now!');
-
+  async playNowClicked() {
     this.setState({
       connectingToGame: true
     });
 
-    // TODO: Make a request to web socket.
+    await connectToGame('myname');
+    this.props.changeMenuView({
+      menuView: MenuConstants.IN_GAME
+    });
   }
 
   render() {
