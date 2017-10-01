@@ -2,6 +2,7 @@ import React from 'react';
 import Game from '../game';
 import { connect } from '../utils/io';
 
+
 // @prop state
 // @ref gameFrame - Used to communicate messages to the game frame from other parts of the page (ex. NavBar).
 class App extends React.Component {
