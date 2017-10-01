@@ -9867,11 +9867,17 @@ var Game = function (_React$Component) {
     value: function componentDidMount() {
       var canvas = document.getElementById('js-game-canvas');
       var ctx = canvas.getContext('2d');
-
+      var tileSize = 50;
       // ctx.clearRect(200, 200);
-
-      ctx.fillStyle = 'blue';
-      ctx.fillRect(20, 20, 20, 20);
+      var board = new _board2.default(5, 5);
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5; j++) {
+          var t = board.getTile(i, j);
+          ctx.fillStyle = t.getColor();
+          console.log(t.getColor());
+          ctx.fillRect(t.getX() * tileSize, t.getY() * tileSize, tileSize, tileSize);
+        }
+      }
     }
   }, {
     key: 'render',
@@ -9907,58 +9913,87 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(3);
+var _tile = __webpack_require__(37);
 
-var _react2 = _interopRequireDefault(_react);
+var _tile2 = _interopRequireDefault(_tile);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Board = function (_React$Component) {
-  _inherits(Board, _React$Component);
-
-  function Board(props) {
+var Board = function () {
+  function Board(width, height) {
     _classCallCheck(this, Board);
 
-    return _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this, props));
+    this._width = width;
+    this._height = height;
+    for (this._grid = []; this._grid.length < this._height; this._grid.push([])) {}
+
+    for (var i = 0; i < this._width; i++) {
+      for (var j = 0; j < this._height; j++) {
+        var c = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        this._grid[i][j] = new _tile2.default(i, j, c);
+      }
+    }
   }
 
   _createClass(Board, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var canvas = document.getElementById('js-game-canvas');
-      var ctx = canvas.getContext('2d');
-
-      // ctx.clearRect(200, 200);
-
-      ctx.fillStyle = 'blue';
-      ctx.fillRect(20, 20, 20, 20);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Game render'
-        ),
-        _react2.default.createElement('canvas', { id: 'js-game-canvas' })
-      );
+    key: 'getTile',
+    value: function getTile(x, y) {
+      return this._grid[x][y];
     }
   }]);
 
   return Board;
-}(_react2.default.Component);
+}();
 
 exports.default = Board;
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Tile = function () {
+  function Tile(pos_x, pos_y, i_color) {
+    _classCallCheck(this, Tile);
+
+    this._xloc = pos_x;
+    this._yloc = pos_y;
+    this._color = i_color;
+  }
+
+  _createClass(Tile, [{
+    key: "getX",
+    value: function getX() {
+      return this._xloc;
+    }
+  }, {
+    key: "getY",
+    value: function getY() {
+      return this._yloc;
+    }
+  }, {
+    key: "getColor",
+    value: function getColor() {
+      return this._color;
+    }
+  }]);
+
+  return Tile;
+}();
+
+exports.default = Tile;
 
 /***/ })
 /******/ ]);

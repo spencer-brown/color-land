@@ -28,6 +28,7 @@ const config = {
     // '!public/js/index.js',
     // '!public/style/index.css'
   ],
+  sharedJsPath: 'src/shared/**/*.js',
   sassPath: 'sass/**/*.scss',
   sassEntryPath: 'sass/index.scss'
 };
@@ -48,7 +49,7 @@ const clientWebpackConfig = {
 
 gulp.task('dev', ['js-client-dev', 'style', 'lint'], () => {
   // Watch for clientside changes and run building tasks.
-  gulp.watch(config.clientJsPath, ['js-client-dev']);
+  gulp.watch([config.clientJsPath, config.sharedJsPath], ['js-client-dev']);
 
   gulp.watch(config.jsToLintPath, ['lint']);
 
