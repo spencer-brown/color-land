@@ -12,6 +12,8 @@ class Game {
     ctx.fillStyle = 'blue';
     ctx.fillRect(20, 20, 20, 20);
 
+    let tileSize = 20;
+
     let board = new Board(5,5);
     for(var i=0; i<5; i++) {
       for(var j=0; j<5; j++) {
