@@ -41,15 +41,15 @@ class App extends React.Component {
         break;
       case MenuConstants.IN_GAME:
         // Blank.
-        menuToShow = '';
         break;
     }
 
     return (
       <div>
         {this.state.connected ?
-          { menuToShow }
-          :
+          <div>
+            { menuToShow }
+          </div> :
           <div>
             <h1>Loading...</h1>
           </div>
