@@ -1,10 +1,7 @@
-const _ = require('lodash');
-
-
 class User {
-  constructor() {
-    this.id = _.uniqueId();
+  constructor(id) {
+    this.id = id;
   }
 }
 
-export default User;
+module.exports = User;
