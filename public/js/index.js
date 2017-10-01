@@ -9873,9 +9873,10 @@ var Game = function (_React$Component) {
       for (var i = 0; i < 5; i++) {
         for (var j = 0; j < 5; j++) {
           var t = board.getTile(i, j);
-          ctx.fillStyle = t.getColor();
-
+          ctx.fillStyle = 'white';
           ctx.fillRect(t.getX() * tileSize, t.getY() * tileSize, tileSize, tileSize);
+          ctx.strokeStyle = "rgba(0, 0, 0, .05)";
+          ctx.strokeRect(t.getX() * tileSize, t.getY() * tileSize, tileSize, tileSize);
         }
       }
     }
@@ -9931,7 +9932,7 @@ var Board = function () {
 
     for (var i = 0; i < this._width; i++) {
       for (var j = 0; j < this._height; j++) {
-        var c = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        var c = '#686868'; //'#'+Math.floor(Math.random()*16777215).toString(16);
         this._grid[i][j] = new _tile2.default(i, j, c);
       }
     }
